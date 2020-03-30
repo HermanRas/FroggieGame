@@ -1,6 +1,10 @@
 class Game {
     constructor() {
+        //Game Framework
         this.gravity = 2;
+        this.score = 0
+
+        //Game Actions
         this.UP = 0;
         this.DOWN = 0;
         this.LEFT = 0;
@@ -31,6 +35,23 @@ class Game {
         }
     }
 
+    updateHud() {
+        // Zero out game actions
+        this.UP = 0;
+        this.DOWN = 0;
+        this.LEFT = 0;
+        this.RIGHT = 0;
+        this.JUMP = 0;
+        this.ACTION = 0;
+
+        // update Score Board
+        fill(252, 249, 20);
+        stroke(0);
+        textAlign(LEFT);
+        textSize(24);
+        text(this.score, 10, 24);
+    }
+
     renderGameState(gameState) {
         switch (gameState) {
             case `Menu`: {
@@ -39,10 +60,12 @@ class Game {
                 break;
             case `Lv1`: {
                 lv1.show();
+                game.updateHud();
             }
                 break;
             case `Lv2`: {
                 lv2.show();
+                game.updateHud();
             }
                 break;
             case `End`: {
@@ -54,13 +77,5 @@ class Game {
             }
                 break;
         }
-
-        // Zero out game actions
-        this.UP = 0;
-        this.DOWN = 0;
-        this.LEFT = 0;
-        this.RIGHT = 0;
-        this.JUMP = 0;
-        this.ACTION = 0;
     }
 }
