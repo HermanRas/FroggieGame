@@ -53,7 +53,6 @@ class Menu {
                 switch (this.menuItems[i]) {
                     case `New`:
                         gameState = gameStates[1];
-                        console.log(gameStates[1])
                         break;
                     case `Exit`:
                         gameState = gameStates[gameStates.length - 1];

@@ -1,6 +1,11 @@
 class Game {
     constructor() {
+        this.frog = new Frog();
 
+    }
+
+    loadAssets() {
+        this.frog.loadAssets();
     }
 
     renderGameState(gameState) {
