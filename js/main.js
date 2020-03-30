@@ -26,11 +26,16 @@ function setup() {
 }
 
 function mouseClicked(event) {
-    menu.onClick(event)
+    if (gameState === 'Menu') {
+        menu.onClick(event)
+    }
 }
 
 
 function draw() {
+    if (keyIsPressed === true) {
+        game.checkMove();
+    }
     background(220);
     game.renderGameState(gameState);
 }

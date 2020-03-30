@@ -6,12 +6,15 @@ class Wasp {
 
     constructor() {
         this.health = 100;
-        this.posX = 255;
-        this.posY = 50;
         this.size = 30;
+        this.posX = gameW;
+        this.posY = Math.floor(Math.random() * (gameH - this.size));
     }
 
+    move() { }
+
     show() {
+        this.move();
         image(this.img, this.posX, this.posY, this.size, this.size);
     }
 }

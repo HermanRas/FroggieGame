@@ -1,6 +1,34 @@
 class Game {
     constructor() {
-        this.gravity = 5;
+        this.gravity = 2;
+        this.UP = 0;
+        this.DOWN = 0;
+        this.LEFT = 0;
+        this.RIGHT = 0;
+        this.JUMP = 0;
+        this.ACTION = 0;
+    }
+
+    checkMove() {
+        // update Actions
+        if (keyIsDown(87) || keyIsDown(UP_ARROW)) {
+            this.UP = -1;
+        }
+        if (keyIsDown(83) || keyIsDown(DOWN_ARROW)) {
+            this.DOWN = 1;
+        }
+        if (keyIsDown(65) || keyIsDown(LEFT_ARROW)) {
+            this.LEFT = -1;
+        }
+        if (keyIsDown(68) || keyIsDown(RIGHT_ARROW)) {
+            this.RIGHT = 1;
+        }
+        if (keyIsDown(32)) {
+            this.JUMP = -5;
+        }
+        if (keyIsDown(69) || keyIsDown(13)) {
+            this.ACTION = 1;
+        }
     }
 
     renderGameState(gameState) {
@@ -26,5 +54,13 @@ class Game {
             }
                 break;
         }
+
+        // Zero out game actions
+        this.UP = 0;
+        this.DOWN = 0;
+        this.LEFT = 0;
+        this.RIGHT = 0;
+        this.JUMP = 0;
+        this.ACTION = 0;
     }
 }

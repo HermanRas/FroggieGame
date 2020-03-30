@@ -1,6 +1,7 @@
 class Lv1 {
 
     constructor() {
+        this.mapBottom = 100;
         this.counter = 1;
         this.frog = new Frog();
         this.wasp = new Wasp();
@@ -15,13 +16,18 @@ class Lv1 {
     }
 
     show() {
-        this.counter++;
         background(this.bg);
         this.frog.show();
         this.wasp.show();
         this.fly.show();
-        if (this.counter == 250) {
-            gameState = gameStates[2];
-        }
     }
+
+    endLevel() {
+        gameState = gameStates[gameStates.length - 1];
+    };
+
+    nextLevel() {
+        gameState = gameStates[2];
+    }
+
 }
