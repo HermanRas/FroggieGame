@@ -3,7 +3,6 @@ class Lv1 {
     constructor() {
         this.mapBottom = 100;
         this.frog = new Frog();
-        this.frog.health = game.frogHealth;
         //wasps
         this.waspCount = 3;
         this.wasps = new Array();
@@ -35,7 +34,8 @@ class Lv1 {
             let stung = this.wasps[i].checkWasStung(this.frog.posX, this.frog.posY, this.frog.size);
             if (stung) {
                 this.wasps.splice(i, 1);
-                this.frog.health = this.frog.health - 10;
+                game.frogHealth = game.frogHealth - 10;
+                this.frog.health = game.frogHealth;
             } else {
                 this.wasps[i].show();
             }
@@ -51,7 +51,7 @@ class Lv1 {
             }
         }
 
-        game.frogHealth = this.frog.health;
+
         // update level complete
         if (this.flies.length === 0) {
             gameState = gameStates[2];
@@ -63,6 +63,7 @@ class Lv1 {
     }
 
     show() {
+        this.frog.health = game.frogHealth;
         background(this.bg);
         this.frog.show();
         this.levelUpdate();
