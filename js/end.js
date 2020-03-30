@@ -3,6 +3,10 @@ class End {
     constructor() {
     }
 
+    loadAssets() {
+
+    }
+
     show() {
         background(0);
         textAlign(CENTER);

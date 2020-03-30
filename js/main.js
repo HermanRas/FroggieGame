@@ -19,10 +19,10 @@ function setup() {
     createCanvas(gameW, gameH);
     gameState = gameStates[0];
     // load Assets for Menu, Levels and end
-    game.loadAssets();
     menu.loadAssets();
     lv1.loadAssets();
     lv2.loadAssets();
+    end.loadAssets();
 }
 
 function mouseClicked(event) {

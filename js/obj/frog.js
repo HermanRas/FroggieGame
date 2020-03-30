@@ -1,13 +1,17 @@
 class Frog {
 
     loadAssets() {
-        this.frog = loadImage('img/froggy.gif');
+        this.img = loadImage('img/froggy.gif');
     }
 
     constructor() {
         this.health = 100;
-        this.assetImg = this.frog;
+        this.posX = 0;
+        this.posY = 280;
+        this.size = 80;
     }
 
-
+    show() {
+        image(this.img, this.posX, this.posY, this.size, this.size);;
+    }
 }
