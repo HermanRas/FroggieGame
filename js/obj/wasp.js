@@ -11,7 +11,13 @@ class Wasp {
         this.posY = Math.floor(Math.random() * (gameH - this.size));
     }
 
-    move() { }
+    move() {
+        this.posX = this.posX - 2;
+        if (this.posX < 0) {
+            this.posX = gameW;
+            this.posY = Math.floor(Math.random() * (gameH - this.size));
+        }
+    }
 
     show() {
         this.move();

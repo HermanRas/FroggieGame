@@ -51,7 +51,6 @@ class Frog {
         this.move();
         image(this.img, this.posX, this.posY, this.size, this.size);
         let lifeID = floor(this.health / 10);
-        console.log(lifeID);
 
         image(this.lifeImg[lifeID], gameW - 110, 10, 100, 10);
 
