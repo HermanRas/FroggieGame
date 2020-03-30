@@ -23,6 +23,7 @@
 ### Requirements
  - [!["JavaScript"](https://img.shields.io/badge/JavaScript-1.8%5E-blue.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [!["HTML 5"](https://img.shields.io/badge/HTML-5-blue.svg)](https://html5test.com/results/desktop.html)
+[!["P5js"](https://img.shields.io/badge/P5js-1-blue.svg)](https://github.com/processing/p5.js/releases)
 
 ### FrameWork 
  - [!["CSS 3"](https://img.shields.io/badge/CSS-3-blue.svg)](http://www.css3.info/)
@@ -36,4 +37,5 @@
 - DONE 2019-03-30 build game frame work, added assets and built main game loop
 
 ## To-Do
-
+ - add loot drops
+ - add enemy variation
