@@ -4,9 +4,13 @@ class Lv1 {
         this.counter = 1;
     }
 
+    loadAssets() {
+        this.bg = loadImage('img/lv1_bg.png');
+    }
+
     show() {
         this.counter++;
-        background(0, 255, 0);;
+        background(this.bg);
         textAlign(CENTER);
         fill(0)
         text(`Lv1`, gameW / 2, gameH / 2);

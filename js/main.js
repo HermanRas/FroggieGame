@@ -1,7 +1,7 @@
 
 // Setup Game Details 
-const gameW = 1024;
-const gameH = 700;
+const gameW = 700;
+const gameH = 400;
 
 // Setup Menu, Levels and End
 let gameStates = new Array(`Menu`, `Lv1`, `Lv2`, `End`);
@@ -18,6 +18,10 @@ function setup() {
     // Setup Game
     createCanvas(gameW, gameH);
     gameState = gameStates[0];
+    // load Assets for Menu, Levels and end
+    menu.loadAssets();
+    lv1.loadAssets();
+    lv2.loadAssets();
 }
 
 function mouseClicked(event) {
