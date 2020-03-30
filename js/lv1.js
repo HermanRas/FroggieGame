@@ -5,7 +5,7 @@ class Lv1 {
         this.frog = new Frog();
 
         //wasps
-        this.waspCount = 10;
+        this.waspCount = 3;
         this.wasps = new Array();
         for (let i = 0; i < this.waspCount; i++) {
             this.wasps[i] = new Wasp();
@@ -56,6 +56,7 @@ class Lv1 {
             gameState = gameStates[2];
         }
         if (this.frog.health === 0) {
+            end.updateEndGame(this.frog.health);
             gameState = gameStates[gameStates.length - 1];
         }
     }

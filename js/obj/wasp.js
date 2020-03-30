@@ -7,7 +7,7 @@ class Wasp {
     constructor() {
         this.health = 100;
         this.size = 30;
-        this.posX = gameW;
+        this.posX = gameW + Math.floor(Math.random() * gameW);
         this.posY = Math.floor(Math.random() * (gameH - this.size));
     }
 

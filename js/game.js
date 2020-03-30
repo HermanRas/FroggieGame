@@ -58,16 +58,25 @@ class Game {
                 menu.show();
             }
                 break;
+
             case `Lv1`: {
                 lv1.show();
                 game.updateHud();
             }
                 break;
+
             case `Lv2`: {
                 lv2.show();
                 game.updateHud();
             }
                 break;
+
+            case `Lv3`: {
+                lv3.show();
+                game.updateHud();
+            }
+                break;
+
             case `End`: {
                 end.show();
             }

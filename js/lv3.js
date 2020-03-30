@@ -1,11 +1,11 @@
-class Lv2 {
+class Lv3 {
 
     constructor() {
         this.mapBottom = 100;
         this.frog = new Frog();
 
         //wasps
-        this.waspCount = 7;
+        this.waspCount = 10;
         this.wasps = new Array();
         for (let i = 0; i < this.waspCount; i++) {
             this.wasps[i] = new Wasp();
@@ -19,7 +19,7 @@ class Lv2 {
     }
 
     loadAssets() {
-        this.bg = loadImage('img/lv2_bg.png');
+        this.bg = loadImage('img/lv3_bg.png');
         this.frog.loadAssets();
         for (let i = 0; i < this.wasps.length; i++) {
             this.wasps[i].loadAssets();
@@ -53,7 +53,7 @@ class Lv2 {
 
         // update level complete
         if (this.flies.length === 0) {
-            gameState = gameStates[3];
+            gameState = gameStates[4];
         }
         if (this.frog.health === 0) {
             end.updateEndGame(this.frog.health);

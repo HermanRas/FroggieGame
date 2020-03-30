@@ -1,16 +1,16 @@
-
 // Setup Game Details 
 const gameW = 700;
 const gameH = 400;
 
 // Setup Menu, Levels and End
-let gameStates = new Array(`Menu`, `Lv1`, `Lv2`, `End`);
+let gameStates = new Array(`Menu`, `Lv1`, `Lv2`, `Lv3`, `End`);
 let gameState;
 
 // Load  Menu, Levels and End
 const menu = new Menu();
 const lv1 = new Lv1();
 const lv2 = new Lv2();
+const lv3 = new Lv3();
 const end = new End();
 const game = new Game();
 
@@ -22,6 +22,7 @@ function setup() {
     menu.loadAssets();
     lv1.loadAssets();
     lv2.loadAssets();
+    lv3.loadAssets();
     end.loadAssets();
 }
 
