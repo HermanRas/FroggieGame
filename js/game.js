@@ -3,6 +3,7 @@ class Game {
         //Game Framework
         this.gravity = 2;
         this.score = 0
+        this.frogHealth = 100;
 
         //Game Actions
         this.UP = 0;

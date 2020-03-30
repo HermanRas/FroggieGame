@@ -3,7 +3,7 @@ class Lv1 {
     constructor() {
         this.mapBottom = 100;
         this.frog = new Frog();
-
+        this.frog.health = game.frogHealth;
         //wasps
         this.waspCount = 3;
         this.wasps = new Array();
@@ -51,6 +51,7 @@ class Lv1 {
             }
         }
 
+        game.frogHealth = this.frog.health;
         // update level complete
         if (this.flies.length === 0) {
             gameState = gameStates[2];
