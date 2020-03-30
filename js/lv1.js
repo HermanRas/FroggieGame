@@ -2,32 +2,68 @@ class Lv1 {
 
     constructor() {
         this.mapBottom = 100;
-        this.counter = 1;
         this.frog = new Frog();
-        this.wasp = new Wasp();
-        this.fly = new Fly();
+
+        //wasps
+        this.waspCount = 10;
+        this.wasps = new Array();
+        for (let i = 0; i < this.waspCount; i++) {
+            this.wasps[i] = new Wasp();
+        }
+        //flies
+        this.flyCount = 10;
+        this.flies = new Array();
+        for (let i = 0; i < this.flyCount; i++) {
+            this.flies[i] = new Fly();
+        }
     }
 
     loadAssets() {
         this.bg = loadImage('img/lv1_bg.png');
         this.frog.loadAssets();
-        this.wasp.loadAssets();
-        this.fly.loadAssets();
+        for (let i = 0; i < this.wasps.length; i++) {
+            this.wasps[i].loadAssets();
+        }
+        for (let i = 0; i < this.flies.length; i++) {
+            this.flies[i].loadAssets();
+        }
+    }
+
+    levelUpdate() {
+        // update frog life from wasps
+        for (let i = 0; i < this.wasps.length; i++) {
+            let stung = this.wasps[i].checkWasStung(this.frog.posX, this.frog.posY, this.frog.size);
+            if (stung) {
+                this.wasps.splice(i, 1);
+                this.frog.health = this.frog.health - 10;
+            } else {
+                this.wasps[i].show();
+            }
+        }
+
+        // update frogs getting eaten 
+        for (let i = 0; i < this.flies.length; i++) {
+            let eaten = this.flies[i].checkWasEaten(this.frog.posX, this.frog.posY, this.frog.size);
+            if (eaten) {
+                this.flies.splice(i, 1);
+            } else {
+                this.flies[i].show();
+            }
+        }
+
+        // update level complete
+        if (this.flies.length === 0) {
+            gameState = gameStates[2];
+        }
+        if (this.frog.health === 0) {
+            gameState = gameStates[gameStates.length - 1];
+        }
     }
 
     show() {
         background(this.bg);
         this.frog.show();
-        this.wasp.show();
-        this.fly.show();
-    }
-
-    endLevel() {
-        gameState = gameStates[gameStates.length - 1];
-    };
-
-    nextLevel() {
-        gameState = gameStates[2];
+        this.levelUpdate();
     }
 
 }

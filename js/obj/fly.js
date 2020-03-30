@@ -7,10 +7,28 @@ class Fly {
     constructor() {
         this.health = 100;
         this.size = 30;
-        this.posX = gameW;
+        this.posX = gameW + Math.floor(Math.random() * gameW);
         this.posY = Math.floor(Math.random() * (gameH - this.size));
         this.posStart = this.posY;
-        this.swing = -1;
+        this.swing = Math.floor(Math.random() * 2) - 2;
+    }
+
+    checkWasEaten(frogX, frogY, frogSize) {
+        let left = frogX;
+        let top = frogY;
+        let bottom = frogY + frogSize;
+        let right = frogX + frogSize;
+
+        if (
+            left < this.posX &&
+            right > this.posX &&
+            top < this.posY &&
+            bottom > this.posY
+        ) {
+            game.score++;
+            return true;
+        }
+        return false;
     }
 
     move() {
@@ -27,6 +45,7 @@ class Fly {
 
         if (this.posX < 0) {
             this.posX = gameW;
+            this.posY = Math.floor(Math.random() * (gameH - this.size));
         }
     }
 

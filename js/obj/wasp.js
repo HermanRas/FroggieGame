@@ -11,6 +11,24 @@ class Wasp {
         this.posY = Math.floor(Math.random() * (gameH - this.size));
     }
 
+
+    checkWasStung(frogX, frogY, frogSize) {
+        let left = frogX;
+        let top = frogY;
+        let bottom = frogY + frogSize;
+        let right = frogX + frogSize;
+
+        if (
+            left < this.posX &&
+            right > this.posX &&
+            top < this.posY &&
+            bottom > this.posY
+        ) {
+            return true;
+        }
+        return false;
+    }
+
     move() {
         this.posX = this.posX - 2;
         if (this.posX < 0) {

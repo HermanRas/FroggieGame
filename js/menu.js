@@ -43,8 +43,6 @@ class Menu {
             let top = ((height * i)) + paddingSize;
             let width = gameW - paddingSize;
 
-            console.log(paddingSize, top, width, height);
-
             if (x > paddingSize &&
                 x < width &&
                 y > top &&
