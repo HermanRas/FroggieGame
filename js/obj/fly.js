@@ -11,6 +11,17 @@ class Fly {
         this.posY = Math.floor(Math.random() * (gameH - this.size));
         this.posStart = this.posY;
         this.swing = Math.floor(Math.random() * 2) - 2;
+        this.eatBugSound;
+    }
+
+    preload() {
+        this.eatBugSound = loadSound('sound/sfx_eatFly.ogg');
+    }
+
+    playSound() {
+        if (this.eatBugSound.isPlaying() === false) {
+            this.eatBugSound.play();
+        }
     }
 
     checkWasEaten(frogX, frogY, frogSize) {
@@ -26,6 +37,7 @@ class Fly {
             bottom > this.posY
         ) {
             game.score++;
+            this.playSound();
             return true;
         }
         return false;

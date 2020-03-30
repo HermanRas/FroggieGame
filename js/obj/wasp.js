@@ -9,8 +9,18 @@ class Wasp {
         this.size = 30;
         this.posX = gameW + Math.floor(Math.random() * gameW);
         this.posY = Math.floor(Math.random() * (gameH - this.size));
+        this.eatBugSound;
     }
 
+    preload() {
+        this.eatBugSound = loadSound('sound/sfx_eatWasp.ogg');
+    }
+
+    playSound() {
+        if (this.eatBugSound.isPlaying() === false) {
+            this.eatBugSound.play();
+        }
+    }
 
     checkWasStung(frogX, frogY, frogSize) {
         let left = frogX;
@@ -24,6 +34,7 @@ class Wasp {
             top < this.posY &&
             bottom > this.posY
         ) {
+            this.playSound();
             return true;
         }
         return false;

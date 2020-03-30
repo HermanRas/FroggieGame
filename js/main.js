@@ -14,6 +14,13 @@ const lv3 = new Lv3();
 const end = new End();
 const game = new Game();
 
+function preload() {
+    game.preload();
+    lv1.preload();
+    lv2.preload();
+    lv3.preload();
+}
+
 function setup() {
     // Setup Game
     createCanvas(gameW, gameH);
@@ -25,6 +32,7 @@ function setup() {
     lv3.loadAssets();
     end.loadAssets();
 }
+
 
 function mouseClicked(event) {
     if (gameState === 'Menu') {

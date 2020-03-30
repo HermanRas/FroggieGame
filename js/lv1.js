@@ -15,6 +15,23 @@ class Lv1 {
         for (let i = 0; i < this.flyCount; i++) {
             this.flies[i] = new Fly();
         }
+        this.lv1_sound;
+    }
+
+    preload() {
+        this.lv1_sound = loadSound('sound/sfx_lv1.ogg');
+        for (let i = 0; i < this.flies.length; i++) {
+            this.flies[i].preload();
+        }
+        for (let i = 0; i < this.wasps.length; i++) {
+            this.wasps[i].preload();
+        }
+    }
+
+    playSound() {
+        if (this.lv1_sound.isPlaying() === false) {
+            this.lv1_sound.play();
+        }
     }
 
     loadAssets() {
@@ -29,6 +46,7 @@ class Lv1 {
     }
 
     levelUpdate() {
+        this.playSound();
         // update frog life from wasps
         for (let i = 0; i < this.wasps.length; i++) {
             let stung = this.wasps[i].checkWasStung(this.frog.posX, this.frog.posY, this.frog.size);
@@ -55,10 +73,12 @@ class Lv1 {
         // update level complete
         if (this.flies.length === 0) {
             gameState = gameStates[2];
+            this.lv1_sound.stop();
         }
         if (this.frog.health === 0) {
             end.updateEndGame(this.frog.health);
             gameState = gameStates[gameStates.length - 1];
+            this.lv1_sound.stop();
         }
     }
 

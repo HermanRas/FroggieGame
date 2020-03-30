@@ -12,6 +12,17 @@ class Game {
         this.RIGHT = 0;
         this.JUMP = 0;
         this.ACTION = 0;
+        this.gameSoundTrack;
+    }
+
+    preload() {
+        this.gameSoundTrack = loadSound('sound/sfx_soundTrack.ogg');
+    }
+
+    playSound() {
+        if (this.gameSoundTrack.isPlaying() === false) {
+            this.gameSoundTrack.play();
+        }
     }
 
     checkMove() {
@@ -57,18 +68,21 @@ class Game {
         switch (gameState) {
             case `Menu`: {
                 menu.show();
+                this.playSound();
             }
                 break;
 
             case `Lv1`: {
                 lv1.show();
                 game.updateHud();
+                this.gameSoundTrack.stop();
             }
                 break;
 
             case `Lv2`: {
                 lv2.show();
                 game.updateHud();
+                this.gameSoundTrack.stop();
             }
                 break;
 
@@ -80,6 +94,7 @@ class Game {
 
             case `End`: {
                 end.show();
+                this.playSound();
             }
                 break;
 
@@ -87,5 +102,6 @@ class Game {
             }
                 break;
         }
+
     }
 }
