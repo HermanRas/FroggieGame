@@ -34,8 +34,12 @@
 
 
 ## ChangeLog
-- DONE 2019-03-30 build game frame work, added assets and built main game loop
+- DONE 2020-03-30 build game frame work, added assets and built main game loop
+- DONE 2020-04-01 fixed Jump
 
 ## To-Do
  - add loot drops
  - add enemy variation
+ - add collusion boxes
+ - find a way to calculate circular collusion's
+ - add player animations on jump and eat, left and right
