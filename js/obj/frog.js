@@ -19,40 +19,71 @@ class Frog {
     constructor() {
         this.health = 100;
         this.size = 80;
+        this.speed = 0.5;
         this.posX = 0;
         this.posY = gameH;
-        this.speed = 0;
+        this.posX_Velocity = 0;
+        this.posY_Velocity = 0;
+        this.jump = false;
+        this.jump_Velocity = 40;
     }
 
     move() {
 
         //Jump
-        this.speed = 0;
-        if (game.JUMP != 0) {
-            this.speed = this.speed + game.JUMP;
+        if (game.JUMP != 0 && this.jump == false) {
+            this.posY_Velocity -= this.jump_Velocity;
+            this.jump = true;
         };
-        this.posY = this.posY + this.speed + game.gravity;
-        if (this.posY > gameH - lv1.mapBottom) {
-            this.posY = gameH - lv1.mapBottom;
+
+        //Move Left
+        if (game.LEFT != 0) {
+            this.posX_Velocity -= this.speed;
         }
 
-        //MOVE left and Right
-        this.posX = this.posX + game.LEFT + game.RIGHT;
-        //Colusion right screen edge
+        //Move Right
+        if (game.RIGHT != 0) {
+            this.posX_Velocity += this.speed;
+        }
+
+        //gravity 
+        this.posY_Velocity += game.gravity;
+
+        //update Location
+        this.posX += this.posX_Velocity;
+        this.posY += this.posY_Velocity;
+
+        //add friction (after all other forces applied)
+        this.posX_Velocity *= game.friction;
+        this.posY_Velocity *= game.friction;
+
+        //Colusion right and left screen edge
         if (this.posX > gameW - this.size) {
             this.posX = gameW - this.size;
         }
         if (this.posX < 0) {
             this.posX = 0;
         }
+
+        //Colusion top and bottom screen edge
+        if (this.posY > gameH - this.size) {
+            this.posY = gameH - this.size;
+            this.jump = false;
+        }
+        if (this.posY < 0) {
+            this.posY = 0;
+        }
     }
 
     show() {
         this.move();
+        //froggie
         image(this.img, this.posX, this.posY, this.size, this.size);
+        //life background
+        fill(0);
+        rect(gameW - 110, 10, 100, 10);
+        //life bar
         let lifeID = floor(this.health / 10);
-
         image(this.lifeImg[lifeID], gameW - 110, 10, 100, 10);
-
     }
 }

@@ -1,7 +1,8 @@
 class Game {
     constructor() {
         //Game Framework
-        this.gravity = 2;
+        this.gravity = 1;
+        this.friction = 0.9;
         this.score = 0
         this.frogHealth = 100;
 
