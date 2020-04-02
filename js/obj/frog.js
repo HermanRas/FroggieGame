@@ -1,7 +1,9 @@
 class Frog {
 
     loadAssets() {
-        this.img = loadImage('img/froggy.gif');
+        this.spriteSheet = loadImage('img/PlayerSprite.png');
+        this.spriteData = loadJSON('img/PlayerSprite.json');
+        // this.img = loadImage('img/froggy.gif');
         this.lifeImg = new Array();
         this.lifeImg[0] = loadImage('img/life/VIDA_0.png');
         this.lifeImg[1] = loadImage('img/life/VIDA_1.png');
@@ -14,9 +16,16 @@ class Frog {
         this.lifeImg[8] = loadImage('img/life/VIDA_8.png');
         this.lifeImg[9] = loadImage('img/life/VIDA_9.png');
         this.lifeImg[10] = loadImage('img/life/VIDA_10.png');
+
+        // Sprite
+        this.animationJump = [];
+        this.animationEat = [];
+        this.frameTrack = 0;
+        this.spriteLoaded = 0;
     }
 
     constructor() {
+        // Frog
         this.health = 100;
         this.size = 80;
         this.speed = 0.5;
@@ -75,13 +84,44 @@ class Frog {
         }
     }
 
+    loadSprite() {
+        if (this.spriteLoaded == 0) {
+            for (let i = 0; i < this.spriteData.frames.length; i++) {
+                let pos = this.spriteData.frames[i].pos;
+                let img = this.spriteSheet.get(pos.x, pos.y, pos.w, pos.h);
+                if (this.spriteData.frames[i].name === 'eat') {
+                    this.animationEat.push(img);
+                }
+                if (this.spriteData.frames[i].name === 'jump') {
+                    this.animationJump.push(img);
+                }
+            }
+            for (let i = this.spriteData.frames.length - 1; i > 0; i--) {
+                let pos = this.spriteData.frames[i].pos;
+                let img = this.spriteSheet.get(pos.x, pos.y, pos.w, pos.h);
+                if (this.spriteData.frames[i].name === 'eat') {
+                    this.animationEat.push(img);
+                }
+                if (this.spriteData.frames[i].name === 'jump') {
+                    this.animationJump.push(img);
+                }
+            }
+            this.sprite = new PlayerSprite(this.animationJump, this.animationEat);
+            this.spriteLoaded = 1;
+        }
+    }
+
     show() {
+        this.loadSprite();
         this.move();
         //froggie
-        image(this.img, this.posX, this.posY, this.size, this.size);
+        this.sprite.show(this.posX, this.posY, this.size);
+        this.sprite.update(this.speed);
+
         //life background
         fill(0);
         rect(gameW - 110, 10, 100, 10);
+
         //life bar
         let lifeID = floor(this.health / 10);
         image(this.lifeImg[lifeID], gameW - 110, 10, 100, 10);
