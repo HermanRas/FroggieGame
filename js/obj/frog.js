@@ -1,7 +1,8 @@
 class Frog {
 
     loadAssets() {
-        this.spriteSheet = loadImage('img/PlayerSprite.png');
+        this.spriteSheetR = loadImage('img/PlayerSpriteR.png');
+        this.spriteSheetL = loadImage('img/PlayerSpriteL.png');
         this.spriteData = loadJSON('img/PlayerSprite.json');
         // this.img = loadImage('img/froggy.gif');
         this.lifeImg = new Array();
@@ -18,8 +19,10 @@ class Frog {
         this.lifeImg[10] = loadImage('img/life/VIDA_10.png');
 
         // Sprite
-        this.animationJump = [];
-        this.animationEat = [];
+        this.animationJumpL = [];
+        this.animationEatL = [];
+        this.animationJumpR = [];
+        this.animationEatR = [];
         this.frameTrack = 0;
         this.spriteLoaded = 0;
     }
@@ -34,6 +37,7 @@ class Frog {
         this.posX_Velocity = 0;
         this.posY_Velocity = 0;
         this.jump = false;
+        this.eating = false
         this.jump_Velocity = 40;
     }
 
@@ -86,27 +90,49 @@ class Frog {
 
     loadSprite() {
         if (this.spriteLoaded == 0) {
-            for (let i = 0; i < this.spriteData.frames.length; i++) {
+            for (let i = this.spriteData.frames.length - 1; i > 0; i--) {
                 let pos = this.spriteData.frames[i].pos;
-                let img = this.spriteSheet.get(pos.x, pos.y, pos.w, pos.h);
+                let img = this.spriteSheetR.get(pos.x, pos.y, pos.w, pos.h);
                 if (this.spriteData.frames[i].name === 'eat') {
-                    this.animationEat.push(img);
+                    this.animationEatR.push(img);
                 }
                 if (this.spriteData.frames[i].name === 'jump') {
-                    this.animationJump.push(img);
+                    this.animationJumpR.push(img);
+                }
+            }
+            for (let i = 0; i < this.spriteData.frames.length; i++) {
+                let pos = this.spriteData.frames[i].pos;
+                let img = this.spriteSheetR.get(pos.x, pos.y, pos.w, pos.h);
+                if (this.spriteData.frames[i].name === 'eat') {
+                    this.animationEatR.push(img);
+                }
+                if (this.spriteData.frames[i].name === 'jump') {
+                    this.animationJumpR.push(img);
+                }
+            }
+
+            for (let i = 0; i < this.spriteData.frames.length; i++) {
+                let pos = this.spriteData.frames[i].pos;
+                let img = this.spriteSheetL.get(pos.x, pos.y, pos.w, pos.h);
+                if (this.spriteData.frames[i].name === 'eat') {
+                    this.animationEatL.push(img);
+                }
+                if (this.spriteData.frames[i].name === 'jump') {
+                    this.animationJumpL.push(img);
                 }
             }
             for (let i = this.spriteData.frames.length - 1; i > 0; i--) {
                 let pos = this.spriteData.frames[i].pos;
-                let img = this.spriteSheet.get(pos.x, pos.y, pos.w, pos.h);
+                let img = this.spriteSheetL.get(pos.x, pos.y, pos.w, pos.h);
                 if (this.spriteData.frames[i].name === 'eat') {
-                    this.animationEat.push(img);
+                    this.animationEatL.push(img);
                 }
                 if (this.spriteData.frames[i].name === 'jump') {
-                    this.animationJump.push(img);
+                    this.animationJumpL.push(img);
                 }
             }
-            this.sprite = new PlayerSprite(this.animationJump, this.animationEat);
+
+            this.sprite = new PlayerSprite(this.animationJumpR, this.animationEatR, this.animationJumpL, this.animationEatL);
             this.spriteLoaded = 1;
         }
     }
@@ -115,11 +141,11 @@ class Frog {
         this.loadSprite();
         this.move();
         //froggie
-        this.sprite.show(this.posX, this.posY, this.size);
+        this.sprite.show(this.posX, this.posY, this.size, this.jump, this.eating);
         this.sprite.update(this.speed);
 
         //life background
-        fill(0);
+        fill(255, 0, 0);
         rect(gameW - 110, 10, 100, 10);
 
         //life bar

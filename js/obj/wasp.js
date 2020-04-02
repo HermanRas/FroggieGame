@@ -22,18 +22,24 @@ class Wasp {
         }
     }
 
-    checkWasStung(frogX, frogY, frogSize) {
-        let left = frogX;
-        let top = frogY;
-        let bottom = frogY + frogSize;
-        let right = frogX + frogSize;
+    checkWasStung(frogX, frogY, frogSize, frogJump) {
 
-        if (
-            left < this.posX &&
-            right > this.posX &&
-            top < this.posY &&
-            bottom > this.posY
-        ) {
+        let frogSizeY = frogSize;
+
+        if (frogJump === false) {
+            frogSizeY = frogSizeY / 2;
+            frogY = frogY + frogSizeY;
+        }
+
+        // wasp
+        // stroke(0, 0, 0, 0);
+        // fill('rgba(255,0,0, 0.50)');
+        // rect(this.posX, this.posY, this.size, this.size);
+
+        if (frogX < this.posX + this.size &&
+            frogX + frogSize > this.posX &&
+            frogY < this.posY + this.size &&
+            frogY + frogSizeY > this.posY) {
             this.playSound();
             return true;
         }

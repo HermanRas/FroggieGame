@@ -24,18 +24,29 @@ class Fly {
         }
     }
 
-    checkWasEaten(frogX, frogY, frogSize) {
-        let left = frogX;
-        let top = frogY;
-        let bottom = frogY + frogSize;
-        let right = frogX + frogSize;
+    checkWasEaten(frogX, frogY, frogSize, frogJump) {
 
-        if (
-            left < this.posX &&
-            right > this.posX &&
-            top < this.posY &&
-            bottom > this.posY
-        ) {
+        let frogSizeY = frogSize;
+
+        if (frogJump === false) {
+            frogSizeY = frogSizeY / 2;
+            frogY = frogY + frogSizeY;
+        }
+
+        // // frog
+        // stroke(0, 0, 0, 0);
+        // fill('rgba(0,255,0, 0.25)');
+        // rect(frogX, frogY, frogSize, frogSizeY);
+
+        // // fly
+        // fill('rgba(0,0,255, 0.50)');
+        // rect(this.posX, this.posY, this.size, this.size);
+
+        if (frogX < this.posX + this.size &&
+            frogX + frogSize > this.posX &&
+            frogY < this.posY + this.size &&
+            frogY + frogSizeY > this.posY) {
+
             game.score++;
             this.playSound();
             return true;

@@ -49,23 +49,29 @@ class Lv1 {
         this.playSound();
         // update frog life from wasps
         for (let i = 0; i < this.wasps.length; i++) {
-            let stung = this.wasps[i].checkWasStung(this.frog.posX, this.frog.posY, this.frog.size);
+            let stung = this.wasps[i].checkWasStung(this.frog.posX, this.frog.posY, this.frog.size, this.frog.jump);
             if (stung) {
                 this.wasps.splice(i, 1);
                 game.frogHealth = game.frogHealth - 10;
                 this.frog.health = game.frogHealth;
+                this.frog.eating = true;
+                this.frog.show();
             } else {
                 this.wasps[i].show();
+                this.frog.eating = false;
             }
         }
 
         // update frogs getting eaten 
         for (let i = 0; i < this.flies.length; i++) {
-            let eaten = this.flies[i].checkWasEaten(this.frog.posX, this.frog.posY, this.frog.size);
+            let eaten = this.flies[i].checkWasEaten(this.frog.posX, this.frog.posY, this.frog.size, this.frog.jump);
             if (eaten) {
                 this.flies.splice(i, 1);
+                this.frog.eating = true;
+                this.frog.show();
             } else {
                 this.flies[i].show();
+                this.frog.eating = false;
             }
         }
 
