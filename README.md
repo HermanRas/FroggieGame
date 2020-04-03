@@ -38,7 +38,8 @@
 - DONE 2020-04-01 fixed Jump
 - DONE 2020-04-02 fixed collusion boxes
 - DONE 2020-04-02 add player animations on jump and eat, left and right
+- DONE 2020-04-03 add loot drops, powerUPs
 
 ## To-Do
- - add loot drops, powerUPs
- - add enemy variation
+- add enemy variation
+- loot drop / power up looks bad, refracture
