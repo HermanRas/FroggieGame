@@ -69,7 +69,7 @@ class Game {
         switch (gameState) {
             case `Menu`: {
                 menu.show();
-                this.playSound();
+                // this.playSound();
             }
                 break;
 
@@ -90,12 +90,13 @@ class Game {
             case `Lv3`: {
                 lv3.show();
                 game.updateHud();
+                this.gameSoundTrack.stop();
             }
                 break;
 
             case `End`: {
                 end.show();
-                this.playSound();
+                // this.playSound();
             }
                 break;
 
