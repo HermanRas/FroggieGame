@@ -33,6 +33,19 @@ function setup() {
     end.loadAssets();
 }
 
+function checkMouse() {
+    if (mouseIsPressed) {
+        if (mouseX > (width / 2)) {
+            game.RIGHT = 1;
+        } else {
+            game.LEFT = -1;
+        }
+
+        if (mouseY < (height / 2)) {
+            game.JUMP = -5;
+        }
+    }
+}
 
 function mouseClicked(event) {
     if (gameState === 'Menu') {
@@ -42,6 +55,7 @@ function mouseClicked(event) {
 
 
 function draw() {
+    checkMouse();
     if (keyIsPressed === true) {
         game.checkMove();
     }

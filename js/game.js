@@ -48,6 +48,7 @@ class Game {
         }
     }
 
+
     updateHud() {
         // Zero out game actions
         this.UP = 0;

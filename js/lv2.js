@@ -98,7 +98,6 @@ class Lv2 {
             let drop = random(0, 4550);
             if (drop > 4540) {
                 this.star.shown = true;
-                console.log(`Dropping`);
             }
         }
         if (this.star.pickedUp === false) {
